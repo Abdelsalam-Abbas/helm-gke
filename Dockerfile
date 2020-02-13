@@ -1,11 +1,11 @@
 FROM alpine:3.7
 MAINTAINER Artem Starostenko
 
-ARG GCLOUD_VERSION=183.0.0
-# https://aur.archlinux.org/packages/kubectl-bin/
-ARG KUBECTL_VERSION=v1.9.1
-# https://github.com/kubernetes/helm/releases
-ARG HELM_VERSION=v2.7.2
+ARG GCLOUD_VERSION=280.0.0
+#https://aur.archlinux.org/packages/kubectl-bin/
+ARG KUBECTL_VERSION=v1.17.3
+#https://github.com/kubernetes/helm/releases
+ARG HELM_VERSION=v3.0.3
 
 # install dependencies
 RUN apk add --no-cache ca-certificates tar wget openssl python bash
@@ -23,7 +23,7 @@ RUN wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_
     && chmod a+x /opt/google-cloud-sdk/bin/kubectl
 
 # install helm
-RUN wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+RUn wget -q https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
     && tar -xvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
     && mv linux-amd64/helm /opt/google-cloud-sdk/bin/ \
     && chmod a+x /opt/google-cloud-sdk/bin/helm \
